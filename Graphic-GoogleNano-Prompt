@@ -1,0 +1,96 @@
+Create a wide-format tall portrait infographic (aspect ratio approximately 4:3), publication-ready, suitable for embedding in a formal government/university proposal PDF. This is a professional IAM/IGA modernization solution infographic for University of Alaska RFP No. 26P0049CD.
+
+OVERALL STYLE: Clean, modern, corporate-government aesthetic. Deep navy backgrounds for problem sections, white/light gray for journey map, green/teal for solution section. 1Kosmos brand colors: dark navy #0A1628, electric blue #0066FF, white. Bold sans-serif typography throughout. No hand-drawn elements. Crisp icons and data visualizations.
+
+---
+
+SECTION 1 — TOP  SECTION (dark navy #0A1628 background, ~28% of height)
+
+Large bold white header: "The Identity Proofing Gap at University of Alaska"
+Subtitle in electric blue: "RFP No. 26P0049CD | 26,643 Identities | 0 Formal Identity Proofing Services"
+
+Below the header, show 5 pain point cards arranged in a 2+3 grid layout. Each card has a dark navy background with a subtle red/amber left border accent, a red warning triangle icon, bold white title, and small light-gray description text:
+
+Card 1 — "No Formal Identity Proofing Service": Home-grown only: Banner data + security questions + email OTP. No NIST-aligned assurance model. (RFP Q&A 1.46, 1.123)
+
+Card 2 — "Ghost Students & Enrollment Fraud": ~19,600 students with no biometric/document verification. Synthetic identities exploit weak onboarding for financial aid fraud.
+
+Card 3 — "Weak Account Claiming & Credential Recovery": Security questions + email OTP only. No IAL tracking. Support staff can override vetting with no auditable fallback.
+
+Card 4 — "NIST 800-63 / IAL2 Compliance Gap": No Day 1 assurance model. FERPA/HIPAA obligations. NIH/federal research access requiring IAL2 by 2027.
+
+Card 5 — "Inconsistent Proofing Across Diverse Populations": 3 universities (UAA, UAF, UAS), manual ad-hoc processes for affiliates, contractors, and sponsored accounts.
+
+---
+
+SECTION 2 — MIDDLE SECTION (white/light gray #F5F7FA background, ~32% of height)
+
+Bold dark navy header: "Where Identity Proofing Fails Today → And Where It Must Be Fixed"
+
+Show a horizontal journey map with 7 stages connected by right-pointing arrows. Each stage is a rounded rectangle card with:
+- Stage number at top
+- Stage name in bold
+- Red badge with "✗ TODAY" showing current failure
+- Green badge with "✓ SOLUTION" showing fixed outcome
+
+Stage 1: Pre-Enrollment / Onboarding — Red: "Banner record only; no real-person verification" | Green: "Biometric ID proofing at enrollment"
+Stage 2: Account Claiming — Red: "Banner data + security Q + email OTP" | Green: "IAL2 verified identity claim"
+Stage 3: Access Provisioning — Red: "Roles by Banner affiliation; no assurance" | Green: "Assurance-gated provisioning"
+Stage 4: Credential Recovery — Red: "Weak self-service; IAL not re-established" | Green: "Re-proofing before reset"
+Stage 5: Role Change / Re-verification — Red: "No re-proofing on status changes" | Green: "Automatic re-verification triggers"
+Stage 6: Ongoing Access Governance — Red: "No certification campaigns; manual groups" | Green: "Automated access certifications"
+Stage 7: Offboarding / Alumni Transition — Red: "Manual alumni roles; lingering access" | Green: "Automated deprovisioning"
+
+Below the journey map, show a horizontal row of user population icons with counts:
+🎓 Students (19,600) | 👤 Faculty/Staff (7,043) | 🏛️ Alumni | 🔧 Affiliates/Contractors | 📋 Sponsored Accounts
+
+---
+
+SECTION 3 — BOTTOM SECTION (deep teal/green #0D6E5E background, ~32% of height)
+
+Bold white header: "How 1Kosmos BlockID + Saviynt EIC Closes the Gap"
+
+Three-column layout:
+
+LEFT COLUMN — white card with electric blue header "1Kosmos BlockID":
+Shield/biometric icon at top. Bullet points in dark text:
+• NIST 800-63 IAL2-Compliant Remote Identity Proofing (mobile-first)
+• Biometric Document Verification: Gov't ID + live selfie, liveness detection
+• 0.001% False Match Rate | 150+ Countries
+• Reusable Verified Identity — "Verify Once, Use Everywhere"
+• Automatic Re-verification Triggers on role changes
+• FedRAMP High Certified — FERPA/HIPAA compliance
+• Tamper-Proof Cryptographic Audit Trails
+
+CENTER COLUMN — highlighted connector box with gold/electric blue glowing border, dark navy background:
+Bold white text: "1Kosmos ↔ Saviynt Exchange Integration"
+Bullet points in light blue:
+• Out-of-the-box connector on Saviynt Exchange (December 2025)
+• Biometric proofing embedded in IGA onboarding workflows
+• IAL tracked and stored within IGA platform
+• No custom development required
+A double-headed arrow icon connecting left and right columns.
+
+RIGHT COLUMN — white card with teal header "Saviynt EIC IGA":
+Gear/workflow icon at top. Bullet points in dark text:
+• Centralized identity lifecycle from Banner (system of record)
+• Automated provisioning/deprovisioning: AD, Google Workspace, Duo, Blackboard
+• RBAC/ABAC with campus-specific configs (UAA, UAF, UAS)
+• Access certification campaigns and recertification cycles
+• Policy-driven self-service: account claiming, password reset, MFA enrollment
+• Native connectors: Banner (Ellucian), AD, Google Workspace, Duo
+
+---
+
+STATS BAR — narrow dark navy strip (#0A1628) just above footer:
+Show these stats in bold white/electric blue in a horizontal row with vertical dividers:
+26,643 Total Identities | 19,600 Students | 7,043 Employees | 3 Universities | 0 Formal Proofing Today | IAL2 Target | 0.001% False Match | 150+ Countries | FedRAMP High | Saviynt Exchange (Dec 2025)
+
+---
+
+FOOTER — very narrow dark strip:
+Small white italic text centered: "Prepared for University of Alaska RFP No. 26P0049CD | Proposal Deadline: March 31, 2026 | 1Kosmos + Saviynt EIC IAM/IGA Modernization Solution"
+
+---
+
+The overall infographic must look like a premium consulting firm deliverable — polished, data-rich, visually hierarchical, with clear visual flow from problem (top) → journey map (middle) → solution (bottom). All text must be legible. Use subtle drop shadows on cards. Use thin divider lines between sections.
