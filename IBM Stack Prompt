@@ -1,0 +1,52 @@
+A large, ultra-detailed enterprise IT architecture diagram titled 'IBM Verify IAM Solution Architecture — Hybrid Enterprise Deployment' in IBM Carbon Design System style. Professional, clean, suitable for CISO/executive presentation. Dark navy #001141 background with white text. IBM Blue #0F62FE accents.
+
+The diagram is divided into FIVE clearly labeled horizontal zones stacked top to bottom, each with a distinct background shade and bold white zone label on the left side:
+
+ZONE 1 — INTERNET / EXTERNAL ZONE (top, dark charcoal background): Shows three user persona icons labeled 'Employee', 'Customer', and 'Privileged Admin' with small human silhouette icons. Also shows 'Partner / B2B' icon. Colored arrows originate from each persona downward.
+
+ZONE 2 — DMZ ZONE (medium gray background): Contains one large product card labeled 'IBM Application Gateway' with subtitle 'Reverse Proxy / Auth Delegation'. Card is white with IBM Blue left border. A 'Zero Trust Enforcement Point' badge in orange is attached. Arrows pass through this zone.
+
+ZONE 3 — ON-PREMISES ENTERPRISE ZONE (dark blue-gray background): Contains three product cards side by side:
+- 'IBM Verify Directory' (white card, IBM Blue border) with subtitle 'LDAP / SCIM Identity Store'
+- 'IBM Verify Privileged Identity' (white card, red-orange border) with subtitle 'PAM / Vault / Session Recording'
+- 'IBM Guardium Key Lifecycle Manager' (white card, gold border) with subtitle 'Crypto Anchor / Key Mgmt'
+A 'Trust Boundary' dashed border surrounds this zone.
+
+ZONE 4 — CLOUD / SaaS ZONE (deep navy background): Contains six product cards arranged in two rows, color-coded by domain:
+Row 1: 'IBM Verify SaaS' (IBM Blue card), 'IBM Verify Workforce Identity' (IBM Blue card), 'IBM Verify CIAM' (teal card)
+Row 2: 'IBM Verify Identity Governance' (purple card), 'IBM Verify Trust' (orange card), 'IBM Verify Identity Protection' (dark red card)
+Each card shows the product name in bold white text and a 2-line subtitle. Cards have rounded corners and subtle drop shadows.
+
+ZONE 5 — PRIVILEGED ACCESS ZONE (darkest background, near black): Contains two components: 'Session Vault' and 'Privileged Session Monitor' shown as server rack icons with labels.
+
+FOUR IAM DOMAIN SWIM LANES shown as semi-transparent vertical color bands overlaid across zones 3-4:
+- Workforce Identity Domain: IBM Blue (#0F62FE) transparent band covering IBM Verify Workforce Identity + IBM Verify SaaS
+- Customer Identity Domain: Teal (#009D9A) transparent band covering IBM Verify CIAM
+- Privileged Access Domain: Red-Orange (#FA4D56) transparent band covering IBM Verify Privileged Identity
+- Identity Governance Domain: Purple (#8A3FFC) transparent band covering IBM Verify Identity Governance
+
+CROSS-CUTTING LAYER label on the right side spanning zones 3-4 with a bracket indicating: IBM Verify Identity Protection, IBM Verify Trust, IBM Verify Directory, IBM Application Gateway, IBM Guardium KLM.
+
+COLORED DIRECTIONAL ARROWS showing four user journey paths:
+- Employee path: solid blue arrows from Employee → IBM Verify Workforce Identity → IBM Verify SaaS → IBM Application Gateway
+- Customer path: solid teal/green arrows from Customer → IBM Verify CIAM → IBM Verify Trust → IBM Verify Directory
+- Admin path: solid purple arrows from Admin → IBM Verify Identity Governance → IBM Verify Directory
+- Privileged User path: solid red arrows from Privileged Admin → IBM Verify Privileged Identity → Session Monitor → IBM Verify Identity Protection
+
+INTEGRATION FLOW ARROWS with small labels:
+- Dashed gray arrow: IBM Verify Directory → IBM Verify SaaS labeled 'LDAP/SCIM sync'
+- Orange arrow: IBM Verify Trust → IBM Verify Workforce Identity labeled 'risk score'
+- Orange arrow: IBM Verify Trust → IBM Verify CIAM labeled 'risk score'
+- Red dashed arrow: IBM Verify Identity Protection → all domains labeled 'ITDR signals'
+- Gold arrow: IBM Guardium KLM → IBM Verify SaaS labeled 'key mgmt'
+- Purple arrow: IBM Verify Identity Governance → all domains labeled 'SCIM provisioning'
+
+LEGEND box in bottom-right corner with colored line samples:
+- Solid blue line = Authentication Flow
+- Dashed gray line = Identity Data Sync
+- Orange line = Risk Signal
+- Gold line = Key Management
+- Red dashed line = Session Monitoring
+- Purple line = Provisioning/SCIM
+
+IBM logo watermark in top-right corner. Zero Trust enforcement point badges (small orange diamonds) at IBM Application Gateway and IBM Verify Trust. Overall style: IBM Carbon Design System, professional enterprise architecture diagram, high information density, clean grid layout, suitable for printing at A0 size.
