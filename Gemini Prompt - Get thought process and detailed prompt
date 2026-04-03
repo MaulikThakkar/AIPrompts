@@ -3,3 +3,36 @@ Create a wide-format infographic (aspect ratio approximately 16:9), publication-
 Future State Solution details are in the attached document
 
 explain your thought process," or "output the detailed prompt used" 
+
+
+Detailed Prompt
+****************
+
+A wide-format (16:9) professional, publication-ready infographic, designed for embedding in a formal county proposal PDF, visualizing the Harris County Future State IAM Ecosystem Solution. The modern digital illustration style uses a clean, structured layout with glowing network lines, progress bars, security nodes, and vector icons. The color palette is composed of blues, greens, and oranges with clean light effects. All text and labels are in Bold Roboto typography and are spell-checked and grammaticially correct. The overall composition is optimal for proposal inclusion and reading.
+
+At the very top, a prominent banner with Bold Roboto text reads: "HARRIS COUNTY | INSTITUTIONAL PROFILE & IAM FUTURE STATE OVERVIEW." Directly below this, a centered banner reads: "FUTURE STATE INTEGRATED IAM ECOSYSTEM."
+
+The graphic is divided into two primary vertical sections. The top section consists of four interconnected blue panels, all with Bold Roboto headers and refined icons (updated and bolded text, with source references like (Source: 464-467, 472)):
+1.  **HARRIS COUNTY PROFILE** (Source: 464-467, 472): A clean vector illustration of the Harris County Courthouse *without gears*, and a Texas map with a star on Houston. Text: "ESSENTIAL REGIONAL SERVICES | LEGISLATION | PUBLIC SAFETY | PUBLIC HEALTH" (Bold Roboto).
+2.  **KEY CONSTITUENCIES** (Source: 472-473): Vector of a distinct and diverse group of profile images (e.g., healthcare worker, officer, resident, clerk). Text: "KEY USER TYPES | EMPLOYEE WORKFORCE (18,000+) | RESIDENTS/CONSTITUENTS (4.8M+) | CONTRACTORS & PARTNERS | INTER-AGENCY COLLABORATION" (Bold Roboto).
+3.  **GEOGRAPHIC COMPLEXITY** (Source: 472): A clean map of Houston with radiating network lines. Text: "DECENTRALIZED OPERATIONS | MULTIPLE PRECINCTS | CRITICAL INFRASTRUCTURE | UNINCORPORATED AREAS" (Bold Roboto).
+4.  **OPERATIONAL OBJECTIVES** (Source: 476, 509): Vector targets. Text: "CORE STRATEGIC GOALS | CENTRALIZED PLATFORM | COST EFFICIENCY | SERVICE ACCESSIBILITY | SECURITY ENHANCEMENT | DATA GOVERNANCE | REGULATORY COMPLIANCE" (Bold Roboto).
+
+A central inter-relation arrow structure, revised with simplified and clean logic, connects context to the diagram, with the analysis header text: "**INTER-RELATION ANALYSIS: ALIGNMENT & FUTURE STATE OPPORTUNITIES**" (Bold Roboto).
+
+The bottom section is a single, clean architectural visualization of the "FUTURE STATE INTEGRATED IAM ECOSYSTEM," replacing the fragmented diagram. It features a large, central box clearly labeled as: **"UNIFIED IDENTITY PLATFORM (IBM VERIFY SaaS)"** (Source: 480-482). Data flow labels and clean lines with arrowheads connect from and to this single source of truth.
+
+From the central Unified Platform, define clean execute blocks of specific use cases with data flow lines and icons:
+* **AUTOMATED LIFECYCLE MANAGEMENT** (Source: 478, 513) linked to Employees.
+* **ROLE-BASED ACCESS CONTROL (RBAC)** (Source: 478, 592) linked to Employees.
+* **CUSTOMER IAM (CIAM)** (Source: 495, 567) linked to Residents.
+* **JUST-IN-TIME (JIT) PRIVILEGED ACCESS** (Source: 490, 494) linked to Contractors.
+* **COMPLIANCE CERTIFICATION & ATTESTATION** (Source: 496, 616) linked to Governance. *Add Federation & ABAC for Agencies.*
+
+The users are represented by bold, distinctive icons (Employees badge, Residents group, Contractors hard hat, Agency partners linked profiles). Data flows and interconnections are streamlined. Clean vector boxes represent target systems and data sources with labels: "HARRIS COUNTY APPLICATIONS" (Source: 490, 494), "COURT SYSTEMS" (Source: 490, 494), "STATE DATABASES", "CLOUD SERVICES", "CITIZEN PORTAL."
+
+At the far bottom left, a green panel with the header "CURRENT CHALLENGES (TOP 5)" is retained and bolded, with stop, key, and warning icons, rephrased for clarity: "DECENTRALIZED ACCESS MANAGEMENT | INCONSISTENT ENFORCEMENT | OVERWHELMING MANUAL PROCESSES | INCREASED COMPLIANCE RISKS | ACCOUNT CREEP & RESIDUAL ACCESS" (Source: 480-482, 486).
+
+A separate clean box below the diagram is "GAPS ANALYSIS" (Source: 486-499), with bolded text and refined lists: MULTIPLE ID SOURCES, DISJOINTED AUTHENTICATION (SSO, MFA inconsistencies), LACK OF UNIFIED LIFECYCLE MANAGEMENT, AD-HOC GOVERNANCE, LIMITED VISIBILITY.
+
+The entire infographic has a clean border, no hand-drawn style, and all spellings and text follow Bold Roboto font with correct grammar. Small data visualization elements (e.g., progress bars, network lines) fill the spaces without making it crowded. A final summary bar at the very bottom reads, in Bold Roboto: "A STRATEGIC & UNIFIED IAM FUTURE STATE: ENABLING Harris COUNTY'S RESILIENCE, COMPLIANCE, AND CITIZEN EXPERIENCE."
