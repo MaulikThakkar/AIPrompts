@@ -1,0 +1,611 @@
+# Master Prompt: Professional Cybersecurity / IAM Portfolio Website
+## "Build Me a Portfolio Like ExploreToSolve.com"
+
+---
+
+## HOW TO USE THIS PROMPT
+
+Paste the entire contents of this file as your first message to Claude. Replace every `[BRACKETED PLACEHOLDER]` with your own information. Claude will build all pages and the deployment script in one session.
+
+---
+
+## PART 1 — CORE IDENTITY & DESIGN SYSTEM
+
+### 1.1 Person Profile
+
+```
+Full Name:          [Your Full Name]
+Title:              [e.g. IAM Manager & Digital Identity Leader]
+Certifications:     [e.g. CISSP, PMP, AWS-CCP]
+Total Experience:   [e.g. 24+ years]
+Domain Focus:       [e.g. Identity & Access Management, Cybersecurity]
+Location:           [City, State]
+Email:              [your@email.com]
+LinkedIn:           [linkedin.com/in/yourhandle]
+Website:            [yoursite.com]
+Work Authorization: [e.g. H1B Sponsorship Required / US Citizen / etc.]
+```
+
+### 1.2 Design System — Dark Cybersecurity Theme
+
+Use this exact CSS variable set across ALL pages for visual consistency:
+
+```css
+:root {
+  /* Backgrounds */
+  --bg:      #050a12;    /* page background */
+  --surface: #080f1a;    /* sidebar, header strips */
+  --card:    #0b1525;    /* cards, panels */
+
+  /* Borders */
+  --border:  #112240;    /* default border */
+  --border2: #1a3a5c;    /* hover/active border */
+
+  /* Accent Colors */
+  --cyan:    #00d4ff;    /* primary accent — IAM/tech */
+  --green:   #00ff9d;    /* active/positive — certifications */
+  --amber:   #ffb830;    /* warning/financial */
+  --purple:  #7c5cfc;    /* education/architecture */
+  --red:     #ff4757;    /* PAM/security */
+  --teal:    #00cec9;    /* early career/telecom */
+
+  /* Typography */
+  --text:    #ccd6f6;    /* body text */
+  --muted:   #4a6080;    /* labels, eyebrows */
+  --muted2:  #8892b0;    /* secondary text */
+  --white:   #e6f1ff;    /* headings */
+
+  /* Fonts */
+  --font-d:    'Bebas Neue', sans-serif;       /* display/titles */
+  --font-ui:   'Rajdhani', sans-serif;         /* body/UI */
+  --font-mono: 'JetBrains Mono', monospace;    /* code/labels/tags */
+}
+```
+
+Google Fonts import for ALL pages:
+```
+https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;700&display=swap
+```
+
+### 1.3 Global Body Rules
+
+Apply to every page:
+- `background: var(--bg)` on body
+- CRT scanline overlay: `body::after` with `repeating-linear-gradient` at 2px intervals, 2% opacity
+- Custom scrollbar: 4px wide, `--border2` thumb color
+- `-webkit-font-smoothing: antialiased`
+
+### 1.4 Compact 3-Column Hero Pattern
+
+Use this layout on ALL standalone pages (Skills, Industry, Resume, etc.) — NOT the tall stacked hero:
+
+```
+[Title Block] | [Description] | [Stats Bar]
+auto          |  1fr          |  auto
+```
+
+CSS: `display: grid; grid-template-columns: auto 1fr auto; gap: 32px; align-items: center;`
+
+- Title block: eyebrow (font-mono, 9px, cyan, uppercase) + title (Bebas Neue, ~46px)
+- Description: 13px, font-weight 300, muted2, line-height 1.65
+- Stats bar: flex row of stat cells with border separators (Bebas Neue numbers, 26px, cyan)
+- Hero padding: `28px 40px 24px` — compact, NOT 52px+
+
+---
+
+## PART 2 — FILE ARCHITECTURE
+
+Build exactly these files. Every file is a self-contained HTML page (no external CSS or JS files):
+
+| File | S3 Key | Purpose |
+|---|---|---|
+| `maulik-thakkar-portfolio.html` | `index.html` | Main SPA with sidebar nav |
+| `resume-pdf.html` | `resume-pdf.html` | Embedded PDF viewer |
+| `skills-detail.html` | `skills-detail.html` | Full skills map — 6 domains |
+| `industry-experience.html` | `industry-experience.html` | Industry deep-dive — 6 sectors |
+| `ping-identity-iam-landscape.html` | `ping-identity-iam-landscape.html` | IAM product reference (or your equivalent) |
+| `career-pathway.html` | `career-pathway.html` | Horizontal timeline + era detail panels |
+| `career-timeline.html` | `career-timeline.html` | Career journey — vertical story view |
+| `career-timeline-v2.html` | `career-timeline-v2.html` | Horizontal year axis only |
+| `website-guide.html` | `website-guide.html` | Article: How I built this site |
+| `deploy.bat` | local only | Windows deployment script |
+
+---
+
+## PART 3 — MAIN PORTFOLIO SPA (`index.html`)
+
+### 3.1 Sidebar Navigation Structure
+
+```
+[Logo / Name area]
+  [Name] — [Title short]
+  [Cert badges: CISSP · PMP · AWS]
+
+Navigation
+  ⌂  Home
+  ◈  Resume           → window.location='resume-pdf.html'
+  ◇  Skills Map       → window.location='skills-detail.html'
+  🗺  Career Pathway   → window.location='career-pathway.html'
+
+Archived Pages
+  ⏱  Career Journey   → window.location='career-timeline.html'
+  📅  Career Timeline  → window.location='career-timeline-v2.html'
+
+Knowledge Base
+  ⬡  Cybersecurity    (internal SPA page)
+     ↳ Identity & Access Mgmt  → window.location='[iam-reference].html'
+     ↳ Zero Trust Architecture (internal)
+     ↳ Threat Intelligence     (internal)
+     ↳ GRC & Compliance        (internal)
+  ✦  Blog & Articles  (internal SPA page)
+  🏭  Industry Experience → window.location='industry-experience.html'
+
+[Social links: LinkedIn · Email · Website]
+[Live clock]
+```
+
+**Critical nav rule**: All internal HTML pages use `window.location='page.html'` (same window, NO `_blank`). Only external URLs (LinkedIn, email) use `window.open`.
+
+### 3.2 SPA Internal Pages (rendered in `<div class="page">` containers)
+
+Build these as internal SPA sections (shown/hidden via JS `goto()` function):
+1. **Home** — hero + stats + feature card grid + floating profile card
+2. **Resume** — work timeline with company/role/bullets + certs + education
+3. **Skills** (lightweight inline version — full detail is skills-detail.html)
+4. **Cybersecurity** — knowledge base with domain cards
+5. **IAM** — internal page linking out to IAM landscape reference
+6. **Zero Trust** — content page
+7. **Threat Intelligence** — content page
+8. **GRC & Compliance** — content page
+9. **Blog & Articles** — article cards
+
+### 3.3 Home Hero Section
+
+```
+[Eyebrow: font-mono · // FULL NAME · TITLE]
+[Main Title: Bebas Neue, clamp(44px,7vw,90px)]
+[Sub Title: role · Bebas Neue · cyan]
+[Description: 15px · muted2]
+[Stats row: Years Exp · Years in Domain · Companies · Certifications]
+[CTA Buttons: View Resume · IAM Portfolio · Skills Map · Career Pathway]
+[Floating Profile Card: avatar · name · role · details · cert badges · career timeline button]
+[Feature Card Grid: 8 cards linking to all major pages]
+```
+
+### 3.4 Feature Card Grid (8 cards on home)
+
+Each card: `background: var(--card)`, colored top border stripe, icon, title, description, `→ LINK TEXT`.
+
+Cards link to:
+1. Resume → `resume-pdf.html`
+2. Skills Map → `skills-detail.html`
+3. Cybersecurity → internal SPA page
+4. IAM Portfolio → `[iam-reference].html`
+5. Blog & Articles → internal SPA page
+6. Career Journey → `career-timeline.html`
+7. Career Timeline → `career-timeline-v2.html`
+8. Career Pathway → `career-pathway.html`
+9. Industry Experience → `industry-experience.html`
+
+---
+
+## PART 4 — STANDALONE PAGES
+
+### 4.1 Universal Back Button Pattern (ALL standalone pages)
+
+Every standalone page must have this sticky topnav:
+```html
+<nav class="topnav">
+  <button class="back-btn" onclick="window.location='index.html'">← Back</button>
+  <div class="nav-crumb">portfolio / section / <span>page-name</span></div>
+  <div class="nav-right">
+    <div class="nav-pill">LABEL 1</div>
+    <div class="nav-pill">LABEL 2</div>
+  </div>
+</nav>
+```
+
+**NEVER use `history.back()` or `window.history.length` checks** — always use `window.location='index.html'` for reliability.
+
+For pages that can be reached from multiple entry points (like an IAM reference page), use smart referrer detection:
+```javascript
+var ref = document.referrer;
+var dest = 'index.html';
+if (ref) {
+  var filename = ref.split('/').pop().split('?')[0];
+  dest = filename || 'index.html';
+}
+document.getElementById('backBtn').onclick = () => window.location = dest;
+```
+
+### 4.2 Sidebar + Content Layout (Skills, Industry pages)
+
+```css
+.layout {
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  min-height: calc(100vh - 54px);
+}
+.sidebar {
+  position: sticky; top: 54px;
+  height: calc(100vh - 54px);
+  overflow-y: auto;
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+}
+```
+
+**CRITICAL**: Name all scroll functions something other than `scrollTo` — that name conflicts with the browser's native `window.scrollTo(x,y)` API and will silently break all sidebar links. Use `scrollToSection(id)` instead:
+
+```javascript
+// WRONG — breaks silently:
+function scrollTo(id) { ... }
+
+// CORRECT:
+function scrollToSection(id) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+```
+
+### 4.3 Skills Detail Page (`skills-detail.html`)
+
+#### Structure:
+1. Topnav with back button
+2. Compact 3-col hero
+3. Sidebar TOC (all skill domains + certs + stack)
+4. Proficiency legend (Expert 90-100% / Advanced 75-89% / Proficient 60-74%)
+5. **Disclaimer banner** (ℹ️ — ratings based on work experience, not tests)
+6. 6 skill domain sections with skill bars
+7. Industry Experience domain cards + "Full Industry View →" button
+8. Certifications — **TWO SECTIONS**:
+   - Active (green glow dot, "ACTIVE" label, green border) — only currently maintained
+   - Past (grey dot, muted styling) — earned but expired/past
+9. Full technology stack tag clouds
+
+#### Certifications split rule:
+- **Active**: Only certs that require ongoing renewal maintenance (e.g. CISSP, PMP)
+- **Past**: All others including AWS CCP, CEH, ISO 27001 LA, SANS GPEN, ITIL, Java certs, etc.
+
+#### Skill bar proficiency logic (for disclaimer):
+```
+90–97% = Led enterprise-scale production implementations, multiple named clients, full lifecycle
+80–89% = Hands-on across multiple engagements, advanced depth
+70–79% = Real production experience, fewer engagements or supporting role
+60–69% = POC-level, training, or foundational knowledge noted in resume
+```
+
+### 4.4 Industry Experience Page (`industry-experience.html`)
+
+Structure:
+1. Topnav + compact 3-col hero
+2. Sidebar (6 industry sectors + Frameworks Matrix + Global Reach)
+3. Accordion industry blocks (click header to expand/collapse)
+4. Each industry: colored header + engagement cards (client, period, company, role badge, bullets, tech chips)
+5. Compliance Frameworks Matrix (3-col grid)
+6. Global Reach (flag + country + detail cards)
+
+### 4.5 Resume PDF Page (`resume-pdf.html`)
+
+- Embed the PDF as base64 using Python: `base64.b64encode(pdf_bytes).decode()`
+- Load into iframe via `URL.createObjectURL(blob)`
+- Include Download button
+- Info bar with name, date, cert badges
+- Fallback message if browser can't display inline
+
+```python
+import base64
+with open('resume.pdf', 'rb') as f:
+    b64 = base64.b64encode(f.read()).decode()
+```
+
+---
+
+## PART 5 — CAREER PATHWAY PAGE
+
+This is the flagship page combining both timeline formats:
+
+### 5.1 TOP SECTION — Horizontal Timeline (from career-timeline-v2 format)
+
+```
+Year Axis: [2001][2002]...[2026] with NOW marker
+Lane 1: Company & Role — exp blocks positioned by % of total years
+Lane 2: Career Domain  — era bands (colored by era)
+Lane 3: Industry Vertical — sector bands
+Cert Dots Row: milestone dots with labels
+```
+
+Implementation notes:
+- `min-width: 1800px` on canvas, `overflow-x: auto` on wrapper
+- Year columns: `flex:1; min-width: 70px`
+- Position each block: `left: pct(startYear, startMonth)%; width: pct(endYear,endMonth)-pct(start)%`
+- `pct(y, m) = (y + m/12 - START_YEAR) / TOTAL_YEARS * 100`
+- Clicking any block activates that era's detail panel below
+- NOW marker: `position:absolute; left: pct(currentYear, currentMonth)%`
+
+### 5.2 ERA TABS BAR
+
+Between timeline and detail panels — 5 color-coded clickable tabs:
+```
+[● Era 01 · Software Dev · 2001-2004]  [● Era 02 · Enterprise Arch · 2004-2010]  ...
+```
+
+### 5.3 BOTTOM SECTION — Era Detail Panels (from career-timeline format)
+
+Each panel contains phase blocks with:
+
+**Phase Block structure:**
+```
+[Icon] [Phase Title]                    [Period Badge]
+       [Client names]
+
+• Bullet 1 with <strong>emphasis</strong>
+• Bullet 2
+• Bullet 3
+
+⚡ Key Shift: [What fundamentally changed in this phase]
+
+Modern Relevance Mapping:
+[chip 1] [chip 2] [chip 3] [chip 4]
+
+👉 Today's Relevance: [How this maps to today's market and modern stack]
+```
+
+### 5.4 CRITICAL: No scroll on page load
+
+The `activateEra()` function must NOT scroll on initial load:
+
+```javascript
+// WRONG — causes page to scroll to detail panel on load:
+setTimeout(() => activateEra(0), 150);
+
+// CORRECT — highlight only, no scroll:
+function activateEra(idx, noScroll) {
+  // ... update tabs, panels, block highlights ...
+  if (noScroll) return;           // ← exit before scrollIntoView
+  // ... scrollIntoView calls only for user clicks ...
+}
+setTimeout(() => activateEra(0, true), 150);  // ← noScroll=true on init
+```
+
+---
+
+## PART 6 — YOUR CAREER DATA
+
+### 6.1 Companies & Roles
+
+Replace this template with your actual experience:
+
+```
+[Company Name]    [Title]                [Start]   [End]     [Era 0-4]
+Net4Nuts          Software Developer     2001-04   2003-08   0
+Lambent Tech      Software Engineer      2003-08   2003-12   0
+Ind-Telesoft      Software Engineer      2004-01   2004-10   0
+Infosys           Technology Architect   2004-11   2010-10   1
+IBM               Security Specialist    2010-10   2011-04   2
+Tech Mahindra     Security Architect     2011-05   2014-10   3
+Deloitte          Specialist Master      2014-10   2025-05   4
+Inspira           IAM Manager            2025-07   present   4
+```
+
+### 6.2 Career Eras (5 eras — customize labels/colors per your journey)
+
+```
+Era 0: color=teal   · label='Software Dev'      · years='2001–2004'
+Era 1: color=green  · label='Enterprise Arch'   · years='2004–2010'
+Era 2: color=amber  · label='IAM Operations'    · years='2010–2012'
+Era 3: color=purple · label='IAM Architecture'  · years='2011–2014'
+Era 4: color=cyan   · label='IAM Leadership'    · years='2014–Now'
+```
+
+### 6.3 Era Detail Content Template
+
+For each era, provide:
+```
+Num: 01
+Period: 2001 – 2004 · Early Career
+Title: [Era name]
+Companies: [Co1 · Co2 · Co3]
+
+Phase 1:
+  Icon: [emoji]
+  Title: [Role at Company]
+  Clients: [Client1 · Client2 · Period]
+  Badge: [Date range]
+  Bullets:
+    - [Achievement with <strong>metric or emphasis</strong>]
+    - [Achievement]
+  Key Shift: [What fundamentally changed]
+  Mapping chips: [Modern skill 1, Modern skill 2, Modern skill 3, Modern skill 4]
+  Today's Relevance: [How this positions you today]
+```
+
+### 6.4 Certifications
+
+**Active** (currently maintained — require renewal):
+```
+[CERT NAME] · [Issuing Body] · [Month Year] · [Renewed Active]
+```
+
+**Past** (earned, foundational, expired or not renewed):
+```
+[CERT NAME] · [Issuing Body] · [Month Year]
+```
+
+### 6.5 Skills with Proficiency %
+
+For each skill, provide:
+```
+[Skill Name] · [%] · [Client context / engagement names]
+```
+
+Example:
+```
+SailPoint IIQ · 97% · Boston U · CapitalOne · NYU Langone · Commonwealth PA
+CyberArk PAM  · 93% · Commonwealth PA · Government client
+Azure AD      · 90% · Toyota Motors NA
+```
+
+---
+
+## PART 7 — AWS DEPLOYMENT SETUP
+
+### 7.1 Infrastructure
+
+```
+S3 Bucket:      [your-bucket-name] (us-east-1, static website disabled — use CloudFront OAC)
+CloudFront:     OAC → S3, HTTPS only
+ACM Cert:       us-east-1, wildcard *.yourdomain.com
+DNS:            Cloudflare CNAME @ and www → CloudFront domain
+                ⚠️ Cloudflare proxy MUST be OFF (grey cloud) — SSL conflict with CloudFront
+Domain:         Cloudflare Registrar (~$9.77/yr)
+Email:          Cloudflare Email Routing (free) → forward to Gmail
+```
+
+### 7.2 deploy.bat (Windows)
+
+Build a menu-driven Windows batch script with:
+- AWS CLI check + credential validation at startup
+- Menu: Full deploy / individual file deploys / invalidate only / exit
+- Each upload: `--content-type "text/html" --cache-control "no-cache, no-store, must-revalidate"`
+- CloudFront invalidation: `aws cloudfront create-invalidation --distribution-id $ID --paths "/*"`
+- Skip upload if local file not found (warn user)
+- Show completion URL at end
+
+---
+
+## PART 8 — TECHNICAL RULES & GOTCHAS
+
+### 8.1 JavaScript Reserved Name Conflicts
+
+Never name functions the same as browser globals:
+```javascript
+// BREAKS: conflicts with window.scrollTo(x, y)
+function scrollTo(id) { ... }
+
+// SAFE:
+function scrollToSection(id) { ... }
+```
+
+### 8.2 No New Tabs for Internal Pages
+
+```javascript
+// WRONG:
+window.open('page.html', '_blank')
+
+// CORRECT:
+window.location = 'page.html'
+```
+
+Exception: LinkedIn, email, external URLs can use `window.open`.
+
+### 8.3 Consistent Back Button
+
+```javascript
+// ALWAYS use this — never history.back() which fails on direct URL access:
+onclick="window.location='index.html'"
+```
+
+### 8.4 Career Pathway Scroll-on-Load Bug
+
+Always call `activateEra(0, true)` on init (not `activateEra(0)`) to prevent the page from scrolling to the detail panel on load and hiding the timeline.
+
+### 8.5 SPA goto() Function
+
+For the main portfolio SPA page switching:
+```javascript
+function goto(pageId, el) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + pageId).classList.add('active');
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  if (el) el.classList.add('active');
+  window.scrollTo(0, 0);
+}
+```
+
+### 8.6 PDF Embedding
+
+```javascript
+// In resume-pdf.html — load base64 PDF into iframe:
+const byteChars = atob(b64);
+const byteArr = new Uint8Array(byteChars.length);
+for (let i = 0; i < byteChars.length; i++) byteArr[i] = byteChars.charCodeAt(i);
+const blob = new Blob([byteArr], { type: 'application/pdf' });
+document.getElementById('pdfFrame').src = URL.createObjectURL(blob);
+```
+
+---
+
+## PART 9 — CONTENT TO PREPARE BEFORE BUILDING
+
+Gather these items before starting:
+
+**Required files:**
+- [ ] Resume PDF (current version)
+- [ ] Resume DOCX (for detailed content extraction)
+
+**Content to write out:**
+- [ ] Professional summary (3-4 sentences)
+- [ ] All companies, titles, dates, client names
+- [ ] 3-5 bullet points per role
+- [ ] Key Shift statement for each era transition
+- [ ] Modern Relevance chips per era (4-6 chips)
+- [ ] Today's Relevance statement per era
+- [ ] Active certifications list (with renewal dates)
+- [ ] Past certifications list
+- [ ] Skill list with your own honest % estimates
+- [ ] Industry sectors you've worked in + client names per sector
+- [ ] Countries/regions you've worked across
+- [ ] Blog article titles + summaries (optional)
+- [ ] Compliance frameworks per industry
+
+**Design decisions to make:**
+- [ ] Primary domain color (e.g. cyan for IAM, purple for GRC)
+- [ ] How many career eras (suggest 4-6)
+- [ ] Which pages go in "Archived Pages" nav section
+- [ ] Whether to include a Ping Identity / IAM product reference page
+
+---
+
+## PART 10 — BUILD ORDER
+
+Ask Claude to build in this sequence for cleanest results:
+
+1. **Main portfolio** (`index.html`) — gets all core nav, SPA structure, home page
+2. **Resume PDF page** — embed actual PDF
+3. **Skills detail page** — all 6 domains + certifications
+4. **Industry experience page** — all sectors with engagement detail
+5. **Career Pathway** — horizontal timeline + era panels (most complex)
+6. **Career Timeline v2** — horizontal only (simpler)
+7. **Career Journey** — vertical era story (richest narrative)
+8. **IAM Reference page** — product landscape or domain reference
+9. **Website Guide article** — how you built it
+10. **deploy.bat** — wiring everything together
+11. **Wire all links** — after all pages exist, do a final pass to connect everything
+12. **Final audit** — check back buttons, no `_blank`, no `scrollTo` name conflicts
+
+---
+
+## PART 11 — SAMPLE OPENING PROMPT
+
+After filling in your details above, start the session with:
+
+```
+I need to build a professional portfolio website for [YOUR NAME], a [YOUR TITLE] with [X]+ years of experience. I have a detailed spec below.
+
+Design: Dark cybersecurity theme (navy/black bg, cyan/green accents, Bebas Neue + Rajdhani + JetBrains Mono fonts). All pages self-contained HTML. No external CSS/JS files.
+
+Architecture: 10 HTML files + deploy.bat. Main file is an SPA (index.html). All other pages are standalone with back buttons using window.location='index.html'.
+
+Files to build:
+[list them]
+
+Person data:
+[paste your filled-in PART 6 content]
+
+Start with the main portfolio SPA (index.html). Include the full sidebar nav structure, SPA page switching, home hero, feature card grid, and floating profile card. Use the exact CSS variables and font stack from my spec.
+```
+
+---
+
+*This prompt was generated from the ExploreToSolve.com portfolio project built for Maulik Thakkar — IAM Manager, CISSP, PMP — April 2026.*
